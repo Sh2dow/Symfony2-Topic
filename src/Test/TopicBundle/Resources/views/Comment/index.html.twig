@@ -1,0 +1,16 @@
+{% for comment in comments %}
+<article class="comment {{ cycle(['odd', 'even'], loop.index0) }}" id="comment-{{ comment.id }}">
+    <header>
+        <p><span class="highlight">{{ comment.user }}</span> commented on <time datetime="{{ comment.created|date('c') }}">{{ comment.created|date('l, F j, Y, H:i:s') }}</time></p>
+    </header>
+    <p>{{ comment.comment }}</p>
+</article>
+{% if is_granted('EDIT', comment) %}
+<form action="{{ path('TestTopicBundle_comment_delete', { 'id': comment.id } ) }}" method="post">
+    <input type="hidden" name="_method" value="DELETE" />
+    <button type="submit">Delete</button>
+</form>
+{% endif %}
+{% else %}
+<p>There are no comments for this post. Be the first to comment...</p>
+{% endfor %}

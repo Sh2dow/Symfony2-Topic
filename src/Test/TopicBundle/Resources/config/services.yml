@@ -1,0 +1,31 @@
+parameters:
+   topic_voter.class: Test\TopicBundle\Controller\TopicVoter
+   comment_voter.class: Test\TopicBundle\Controller\CommentVoter
+   subscription_voter.class: Test\TopicBundle\Controller\SubscriptionVoter
+
+services:
+#    subscription_voter:
+#        class: %subscription_voter.class%
+#        public: false
+#        arguments: 
+#          entityManager: "@doctrine.orm.entity_manager"
+#        tags:
+#            - { name: security.voter }
+            
+    topic_voter:
+        class: %topic_voter.class%     
+        arguments:  ["@service_container"]
+        public:     false
+        tags:
+            - { name: security.voter }
+            
+    comment_voter:
+        class: %comment_voter.class%     
+        arguments:  ["@service_container"]
+        public:     false
+        tags:
+            - { name: security.voter }
+
+#    test_topic.example:
+#        class: %test_topic.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

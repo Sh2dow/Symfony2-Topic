@@ -1,0 +1,48 @@
+{% extends 'TestTopicBundle::layout.html.twig' %}
+
+{% block body -%}
+<h1>Topic list</h1>
+
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Body</th>
+            <th>Created</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for topic in topics %}
+            <tr>
+                <td><a href="{{ path('TestTopicBundle_topic_show', { 'id': topic.id }) }}">{{ topic.id }}</a></td>
+                <td>{{ topic.title }}</td>
+                <td>{{ topic.body }}</td>
+                <td>{% if topic.created %}{{ topic.created|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('TestTopicBundle_topic_show', { 'id': topic.id }) }}">show</a>
+                        </li>
+
+                        {% if is_granted('EDIT', topic) %}
+                        <li>
+                            <a href="{{ path('TestTopicBundle_topic_edit', { 'id': topic.id }) }}">edit</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <ul>
+        <li>
+            <a href="{{ path('TestTopicBundle_topic_new') }}">
+                Create a new entry
+            </a>
+        </li>
+
+    </ul>
+    {% endblock %}

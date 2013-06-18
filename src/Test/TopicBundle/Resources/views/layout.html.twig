@@ -1,0 +1,18 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div id="container">
+        <header class="clearfix">
+            <nav>
+                <ul>
+                    {% if is_granted([ 'ROLE_ADMIN' , 'ROLE_USER' ]) %}
+                        <li>
+                            <a href="{{ path('_security_logout') }}">
+                                Выход
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </header>
+{% endblock %}

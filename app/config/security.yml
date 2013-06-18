@@ -1,0 +1,39 @@
+## Security Configuration
+security:
+    encoders:
+        Test\TopicBundle\Entity\User:
+            algorithm: sha1
+            encode-as-base64: false
+            iterations: 1
+
+    role_hierarchy:
+#     ROLE_USER: [IS_AUTHENTICATED_ANONYMOUSLY]
+     ROLE_AUTHOR: [ROLE_USER]
+     ROLE_MODERATOR: [ROLE_AUTHOR]
+     ROLE_ADMIN: [ROLE_MODERATOR]
+     ROLE_SUPER_ADMIN: [ROLE_ADMIN]
+
+    providers:
+        main:
+            entity: { class: TestTopicBundle:User, property: username }
+
+    firewalls:
+        main:
+            pattern: /.*
+            form_login:
+                check_path: /login_check
+                login_path: /login
+            logout: 
+                path:   /logout
+                target: /topic/
+            security: true
+            anonymous: true
+
+    access_control:
+        - { path: /user/.*, roles: [ ROLE_USER, ROLE_ADMIN ] }
+        - { path: /admin/.*, role: ROLE_ADMIN }
+#        - { path: /comment/.*, roles: [ ROLE_ADMIN, ROLE_USER ] }
+        - { path: /.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+     
+    acl:
+          connection: default

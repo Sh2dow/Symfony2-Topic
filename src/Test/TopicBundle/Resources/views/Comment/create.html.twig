@@ -1,0 +1,8 @@
+{% extends 'TestTopicBundle::layout.html.twig' %}
+
+{% block title %}Add Comment{% endblock%}
+
+{% block body %}
+    <h1>Add comment for topic post "{{ comment.topic.title }}"</h1>
+    {% include 'TestTopicBundle:Comment:form.html.twig' with { 'form': form } %}
+{% endblock %}

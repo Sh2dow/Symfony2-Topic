@@ -1,0 +1,18 @@
+{% extends "TestTopicBundle::layout.html.twig" %}
+ 
+{% block title %}
+<ul>
+    <li>
+    <a href="{{ path('TestTopicBundle_topic') }}">Topics</a>
+    </li>
+    <li>
+    <a href="{{ path('user') }}">Users</a>
+    </li>
+</ul>
+{% endblock %}
+ 
+{% block content %}
+    <h2>
+        Добро пожаловать на администраторскую страницу, {{ app.user.username }}!
+    </h2>
+{% endblock %}

@@ -1,0 +1,85 @@
+//    public function newCommentAction(Topic $topic) {
+//        $topic = $this->getTopic($topic_id);
+//        $user = $this->get('security.context')->getToken()->getUser();
+//
+//        $comment = new Comment();
+//        $comment->setTopic($topic);
+//        $form = $this->createFormBuilder($add_comment)
+//                ->add('topic_id', 'hidden')
+//                ->add('user', 'text')
+//                ->add('comment', 'textarea')
+//                ->getForm();
+//
+//        return $this->render('TestTopicBundle:Topic:form.html.twig', array(
+//                    'comment' => $comment,
+//                    'form' => $form->createView()
+//        ));
+//    }
+//
+//    public function addCommentAction(Topic $topic) {
+//        $comment = new Comment();
+//        $comment->setTopic($topic);
+//        $request = $this->getRequest();
+//        $form = $this->createForm(new CommentType(), $comment);
+//        $form->bindRequest($request);
+//
+//        return $this->render('TestTopicBundle:Comment:form.html.twig', array(
+//                    'comment' => $comment,
+//                    'form' => $form->createView()
+//        ));
+//        // ... setup $form, and submit data
+//
+//        if ($form->isValid()) {
+//            $entityManager = $this->getDoctrine()->getManager();
+//            $entityManager->persist($comment);
+//            $entityManager->flush();
+//
+//            // creating the ACL
+//            $aclProvider = $this->get('security.acl.provider');
+//            $objectIdentity = ObjectIdentity::fromDomainObject($comment);
+//            $acl = $aclProvider->createAcl($objectIdentity);
+//
+//            // retrieving the security identity of the currently logged-in user
+//            $securityContext = $this->get('security.context');
+//            $user = $securityContext->getToken()->getUser();
+//            $securityIdentity = UserSecurityIdentity::fromAccount($user);
+//
+//            // grant owner access
+//            $acl->insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
+//            $aclProvider->updateAcl($acl);
+//        }
+//    }
+//
+//    public function deleteCommentAction($id) {
+//
+//        $securityContext = $this->get('security.context');
+//
+//        // check for delete access
+//        if (false === $securityContext->isGranted('DELETE', $id)) {
+//            throw new AccessDeniedException();
+//        }
+////        $topic = $this->getTopic($topic_id);
+//        $form = $this->createDeleteCommentForm($id);
+////        $form->bind($request);
+//
+//
+//        $em = $this->getDoctrine()->getManager();
+//        $comment = $em->getRepository('TestTopicBundle:Comment')->find($id);
+//
+//        if (!$comment) {
+//            throw $this->createNotFoundException('Unable to find Comment.');
+//        }
+//
+//        $em->remove($comment);
+//        $em->flush();
+//
+//        return $this->redirect($this->generateUrl('TestTopicBundle_topic'));
+////        return $this->redirect($this->generateUrl('TestTopicBundle_topic_show', array('topic_id' => $topic_id)));
+//    }
+//
+//    private function createDeleteCommentForm($id) {
+//        return $this->createFormBuilder(array('id' => $id))
+//                        ->add('id', 'hidden')
+//                        ->getForm()
+//        ;
+//    }

@@ -1,0 +1,153 @@
+_security_login:
+    pattern:  /login
+    defaults: { _controller: TestTopicBundle:Security:login }
+
+_security_check:
+    pattern:  /login_check
+
+_security_logout:
+    pattern:  /logout
+
+admin_home:
+    pattern:  /admin/
+    defaults: { _controller: TestTopicBundle:Admin:index }
+    
+user:
+    pattern:  /user/
+    defaults: { _controller: TestTopicBundle:User:index }
+    requirements:
+        _method:  GET
+        id: \d+
+
+user_show:
+    pattern:  /user/{id}
+    defaults: { _controller: TestTopicBundle:User:show }
+    requirements:
+        _method:  GET
+        id: \d+
+
+user_edit:
+    pattern:  /user/{id}/edit
+    defaults: { _controller: TestTopicBundle:User:edit }
+    requirements:
+        _method:  GET
+        id: \d+
+
+user_update:
+    pattern:  /user/{id}
+    defaults: { _controller: TestTopicBundle:User:update }
+    requirements:
+        _method:  PUT
+        id: \d+
+
+user_new:
+     pattern:  /user/create
+     defaults: { _controller: TestTopicBundle:User:new }
+     requirements:
+         _method:  GET
+         id: \d+
+        
+user_create:
+    pattern:  /user/create
+    defaults: { _controller: TestTopicBundle:User:create }
+    requirements:
+        _method:  POST
+        id: \d+
+
+user_delete:
+    pattern:  /user/{id}/delete
+    defaults: { _controller: TestTopicBundle:User:delete }
+    requirements:
+        _method:  POST|DELETE
+        id: \d+
+    
+TestTopicBundle_topic:
+    pattern:  /topic/
+    defaults: { _controller: TestTopicBundle:Topic:index }
+    requirements:
+        _method:  GET
+        id: \d+
+
+TestTopicBundle_topic_show:
+    pattern:  /topic/{id}
+    defaults: { _controller: TestTopicBundle:Topic:show }
+    requirements:
+        _method:  GET
+        id: \d+
+
+TestTopicBundle_topic_edit:
+    pattern:  /topic/{id}/edit
+    defaults: { _controller: TestTopicBundle:Topic:edit }
+    requirements:
+        _method:  GET
+        id: \d+
+
+TestTopicBundle_topic_update:
+    pattern:  /topic/{id}
+    defaults: { _controller: TestTopicBundle:Topic:update }
+    requirements:
+        _method:  PUT
+        id: \d+
+
+TestTopicBundle_topic_new:
+     pattern:  /create
+     defaults: { _controller: TestTopicBundle:Topic:new }
+     requirements:
+         _method:  GET
+         id: \d+
+        
+TestTopicBundle_topic_create:
+    pattern:  /create
+    defaults: { _controller: TestTopicBundle:Topic:create }
+    requirements:
+        _method:  POST
+        id: \d+
+
+TestTopicBundle_topic_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: TestTopicBundle:Topic:delete }
+    requirements:
+        _method:  POST|DELETE
+        id: \d+
+        
+TestTopicBundle_comment:
+    pattern:  /comment
+    defaults: { _controller: TestTopicBundle:Comment:index }
+    requirements:
+        _method:  GET
+        id: \d+
+        
+TestTopicBundle_comment_show:
+    pattern:  /comment/{id}
+    defaults: { _controller: TestTopicBundle:Comment:show }
+    requirements:
+        _method:  GET
+        id: \d+
+        
+TestTopicBundle_comment_create:
+    pattern:  /comment/{topic_id}
+    defaults: { _controller: TestTopicBundle:Comment:create }
+    requirements:
+        _method:  POST
+        id: \d+
+        
+TestTopicBundle_comment_delete:
+    pattern:  /comment/{id}/delete
+    defaults: { _controller: TestTopicBundle:Comment:delete }
+    requirements:
+        _method:  POST|DELETE
+        id: \d+
+
+TestTopicBundle_comment_edit:
+    pattern:  /comment/{id}/edit
+    defaults: { _controller: TestTopicBundle:Topic:edit }
+    requirements:
+        _method:  GET
+        id: \d+
+
+TestTopicBundle_comment_update:
+    pattern:  /comment/{id}
+    defaults: { _controller: TestTopicBundle:Topic:update }
+    requirements:
+        _method:  PUT
+        id: \d+

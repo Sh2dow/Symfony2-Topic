@@ -1,0 +1,11 @@
+{% if is_granted(['ROLE_AUTHOR']) %}
+{% form_theme form 'form_table_layout.html.twig'  %}
+<form action="{{ path('TestTopicBundle_comment_create', { 'topic_id' : comment.topic.id } ) }}" method="post" {{ form_enctype(form) }} class="test">
+    {{ form_widget(form) }}
+        <p>
+            <input type="submit" value="Submit">
+        </p>
+    </form>
+{% else %}
+<h2>You have no permissions to post comments!!!</h2>
+{% endif %}
